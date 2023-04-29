@@ -9,10 +9,10 @@ may find it useful to be able to see the relevant changes in a new version.
 
 For each new version:
 
-Run `update_all.sh`
-Commit with message "Update all"
-Run `update_special.sh`
-Commit with message "Update special"
+- Run `update_all.sh`
+- Commit with message "Update all"
+- Run `update_special.sh`
+- Commit with message "Update special"
 
 ## Updating
 
