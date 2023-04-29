@@ -79,6 +79,10 @@ Annoying details:
 //
 // ************************************************************************************* //
 
+message Deprecated {
+  // common type for all deprecated message data, so that the $case is decoded but not the data
+}
+
 message SpriteDirectionEnum {
   enum ENUM {
     Stand = 0;
@@ -432,12 +436,6 @@ message MapSetSprites {
   optional bool delete = 3;
 }
 
-// deprecating (NGN-707)
-message MapSetSpaces {
-  string mapId = 1;
-  repeated Space spaces = 2;
-}
-
 message MapSetNooks {
   string mapId = 1;
   map<string, NookDiff> nooks = 2;
@@ -698,7 +696,6 @@ message ServerClientEvent {
     PlayerSetsEmojiStatus playerSetsEmojiStatus = 19;
     PlayerSetsAffiliation playerSetsAffiliation = 20;
     PlayerExits playerExits = 21;
-    RespawnComplete respawnComplete = 39; // deprecated (NGN-108)
     PlayerSetsOutfitString playerSetsOutfitString = 40;
     PlayerSetsIsSignedIn playerSetsIsSignedIn = 41;
     SpaceOverwrites spaceOverwrites = 44;
@@ -720,7 +717,6 @@ message ServerClientEvent {
     MapSetBackgroundImagePath mapSetBackgroundImagePath = 60;
     MapSetForegroundImagePath mapSetForegroundImagePath = 61;
     MapSetSprites mapSetSprites = 62; // deprecating (NGN-106)
-    MapSetSpaces mapSetSpaces = 63; // deprecating (NGN-707)
     MapSetSpawns mapSetSpawns = 64;
     MapSetPortals mapSetPortals = 65;
     MapSetAnnouncer mapSetAnnouncer = 66;
@@ -1078,8 +1074,6 @@ message PlayerSetsIsSignedIn {
 }
 
 //                                             (see top of file for how to safely make changes)
-
-message RespawnComplete {}
 
 // It's pretty wack that we're using JSON to serialize / deserialize space data here.
 // TODO: improve this by splitting this up into several events or using a better message interface
@@ -1462,14 +1456,14 @@ message ClientServerAction {
     SetCurrentDesk setCurrentDesk = 39; // deprecating (NGN-696)
     SetCurrentArea setCurrentArea = 40; // experimental
     SetImagePointer setImagePointer = 41;
-    SetGoKartId setGoKartId = 42; // deprecated (NGN-706)
+    Deprecated setGoKartId = 42; // deprecated (NGN-706)
     MapSetDimensions mapSetDimensions = 43;
     MapSetCollisions mapSetCollisions = 44;
     MapSetBackgroundImagePath mapSetBackgroundImagePath = 45;
     MapSetForegroundImagePath mapSetForegroundImagePath = 46;
     MapSetSprites mapSetSprites = 47; // deprecated (NGN-106)
     MapSetSpawns mapSetSpawns = 48;
-    MapSetSpaces mapSetSpaces = 49; // deprecating (NGN-707)
+    Deprecated mapSetSpaces = 49; // deprecating (NGN-707)
     MapSetPortals mapSetPortals = 50;
     MapSetAnnouncer mapSetAnnouncer = 51;
     MapSetAssets mapSetAssets = 54; // deprecating (use type 0 objects) (NGN-123)
@@ -1836,11 +1830,6 @@ message SetCurrentDesk {
 
 message SetCurrentArea {
   string currentArea = 1;
-  optional string targetId = 2;
-}
-
-message SetGoKartId {
-  string goKartId = 1;
   optional string targetId = 2;
 }
 
