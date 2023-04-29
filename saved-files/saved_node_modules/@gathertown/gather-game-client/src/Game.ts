@@ -1011,16 +1011,6 @@ export class Game {
     });
   }
 
-  setWorkCondition(workCondition: boolean, targetId?: string) {
-    this.sendAction({
-      $case: "setWorkCondition",
-      setWorkCondition: {
-        workCondition,
-        targetId,
-      },
-    });
-  }
-
   setAway(away: boolean, targetId?: string) {
     this.sendAction({
       $case: "setAway",
@@ -1206,16 +1196,6 @@ export class Game {
       $case: "setInConversation",
       setInConversation: {
         inConversation,
-        targetId,
-      },
-    });
-  }
-
-  setCurrentDesk(currentDesk: string, targetId?: string) {
-    this.sendAction({
-      $case: "setCurrentDesk",
-      setCurrentDesk: {
-        currentDesk,
         targetId,
       },
     });
@@ -1567,11 +1547,9 @@ export class Game {
     updatesAreOverwrites?: boolean,
   ) {
     const wireObjects: { [key: number]: WireObject } = {};
-    Object.keys(objects).reduce((wireObjects, keyString) => {
+    Object.entries(objects).reduce((wireObjects, [keyString, obj]) => {
       const key = parseInt(keyString);
-      // @ts-expect-error Error auto-ignored when enabling TS noUncheckedIndexedAccess. If you're already touching this code, please clean this up while you're at it.
-      // TODO: @ENG-4257 Clean these up! See the linear task for more context and advice for cleaning up.
-      wireObjects[key] = convertMapObjectToWireObject(objects[key]);
+      wireObjects[key] = convertMapObjectToWireObject(obj);
       return wireObjects;
     }, wireObjects);
     this.engine?.sendAction({
