@@ -5,6 +5,15 @@ This repo keeps track of changes to the `@gathertown/gather-game-client` node mo
 Changes aren't publicly announced, so people working with the websocket API
 may find it useful to be able to see the relevant changes in a new version.
 
+## Instructions
+
+For each new version:
+
+Run `update_all.sh`
+Commit with message "Update all"
+Run `update_special.sh`
+Commit with message "Update special"
+
 ## Updating
 
 ### Scripts
