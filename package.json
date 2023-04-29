@@ -1,0 +1,8 @@
+{
+  "name": "gather-code-changes",
+  "version": "0.0.0",
+  "description": "Just downloading the gather-game-client, in order to detect changes.",
+  "dependencies": {
+    "@gathertown/gather-game-client": "*"
+  }
+}
