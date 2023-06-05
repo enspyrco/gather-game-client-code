@@ -5,27 +5,27 @@ This repo keeps track of changes to the `@gathertown/gather-game-client` node mo
 Changes aren't publicly announced, so people working with the websocket API
 may find it useful to be able to see the relevant changes in a new version.
 
-## Instructions
+## Last checked version
 
-For each new version:
+The latest version was 40.0.0 as of Jun 5th 2023.
 
-- Run `update_all.sh`
-- Commit with message "Update all"
-- Run `update_special.sh`
-- Commit with message "Update special"
+## Determine the latest version
 
-## Updating
+Check the current verion with:
 
-### Scripts
+```sh
+npm view @gathertown/gather-game-client version
+```
 
-There are two scripts:
+## Steps to update
 
-#### update_all.sh
+For a new version:
 
-Gets the latest `@gathertown/gather-game-client` and saves the package-lock.json
-(for seeing version changes) and the whole `node_modules` folder (just in case).
+- Run `update.sh`
+- Commit with message "Updated to x.y.x"
+- Update the [Last checked version](#last-checked-version)
 
-#### update_special.sh
+### update.sh
 
-Gets the latest `@gathertown/gather-game-client` and saves just the particularly
-interesting files, ie. `events.proto` and `Game.ts`.
+Gets the latest `@gathertown/gather-game-client` and saves `package-lock.json`
+(for the version change) and the `node_modules` folder (for code changes).
